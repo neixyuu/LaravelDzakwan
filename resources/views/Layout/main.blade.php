@@ -128,7 +128,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://www.bootstrapdash.com/demo/spica/template/">
+          <a class="nav-link" href="https://youtu.be/dQw4w9WgXcQ?si=uQ64g_sdcRs9WWrL">
             <button class="btn bg-danger btn-sm menu-title">Upgrade to pro</button>
           </a>
         </li>
@@ -146,7 +146,7 @@
             <a class="navbar-brand brand-logo" href="index.html"><img src="{{ asset ('images/logo.svg') }}" alt="logo"/></a>
             <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ asset ('images/logo-mini.svg') }}" alt="logo"/></a>
           </div>
-          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, Yuuki Asuna</h4>
+          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, {{ Auth::user()->name }}</h4>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item">
               <h4 class="mb-0 font-weight-bold d-none d-xl-block">Mar 12, 2019 - Apr 10, 2019</h4>
@@ -261,17 +261,27 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                 <img src="https://avatarfiles.alphacoders.com/344/344739.png" alt="profile"/>
-                <span class="nav-profile-name">Yuuki Asuna</span>
+                <span class="nav-profile-name">{{ Auth::user()->name}}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item">
                   <i class="mdi mdi-settings text-primary"></i>
                   Settings
                 </a>
-                <a class="dropdown-item">
+                {{-- <a class="dropdown-item">
                   <i class="mdi mdi-logout text-primary"></i>
                   Logout
-                </a>
+                </a> --}}
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                                     <i class="mdi mdi-logout text-primary"></i>
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
               </div>
             </li>
             <li class="nav-item">
